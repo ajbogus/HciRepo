@@ -1,0 +1,17 @@
+﻿<Window x:Class="HCI_Final_Project.Define1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HCI_Final_Project"
+        mc:Ignorable="d"
+        Title="Define1" Height="450" Width="800">
+    <Grid>
+        <Label Content="Word that you would like to define:" HorizontalAlignment="Left" Height="31" Margin="75,64,0,0" VerticalAlignment="Top" Width="202"/>
+        <Label Content="Definition:" HorizontalAlignment="Left" Height="29" Margin="75,100,0,0" VerticalAlignment="Top" Width="202"/>
+        <TextBox x:Name="wordToDefine" HorizontalAlignment="Left" Height="22" Margin="277,64,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="215"/>
+        <TextBox x:Name="definition" HorizontalAlignment="Left" Height="268" Margin="170,114,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="563"/>
+        <Button x:Name="bttnDefine" Content="Define" HorizontalAlignment="Left" Height="23" Margin="507,64,0,0" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.224,1.088" Click="bttnDefine_Click"/>
+
+    </Grid>
+</Window>

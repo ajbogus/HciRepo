@@ -49,5 +49,13 @@ namespace HCI_Final_Project
             }
             textBlock.Text = toPutInUI;
         }
+
+        private void defineBttn_Click(object sender, RoutedEventArgs e)
+        {
+            //Someone wants to define a word
+            // Let's popup our "define1.xaml" window to give a definition
+            var defineWindow = new Define1();
+            defineWindow.Show();
+        }
     }
 }
