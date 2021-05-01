@@ -47,7 +47,9 @@ namespace HCI_Final_Project
             {
                 toPutInUI += line;
             }
-            textBlock.Text = toPutInUI;
+            textBlock.Document.Blocks.Clear();
+            textBlock.Document.Blocks.Add(new Paragraph(new Run(toPutInUI)));
+            //textBlock.Text = toPutInUI;
         }
 
         private void defineBttn_Click(object sender, RoutedEventArgs e)
@@ -55,6 +57,33 @@ namespace HCI_Final_Project
             //Someone wants to define a word
             // Let's popup our "define1.xaml" window to give a definition
             var defineWindow = new Define1();
+            defineWindow.Show();
+        }
+
+        private void textBlock_GotFocus(object sender, RoutedEventArgs e)
+        {
+            //RichTextBox txtBox = (RichTextBox)sender;
+            //var defineWindow = new Define2(txtBox.Selection.Text);
+            //defineWindow.Show();
+            /**char[] strDataAsChars = txtBox.Text.ToCharArray();
+            int i = 0;
+           
+
+            for (i = txtBox.SelectionStart - 1; ((i >= 0) && (strDataAsChars[i] != ' ')); --i) ;
+            int selBegin = i + 1;
+
+            for (i = txtBox.SelectionStart; ((i < strDataAsChars.Length) && (strDataAsChars[i] != ' ')); ++i) ;
+            int selEnd = i;
+
+            //txtBox.Select(selBegin, selEnd - selBegin);
+            var defineWindow = new Define2(txtBox.SelectedText);
+            defineWindow.Show();**/
+        }
+
+        private void textBlock_SelectionChanged(object sender, MouseButtonEventArgs e)
+        {
+            RichTextBox txtBox = (RichTextBox)sender;
+            var defineWindow = new Define2(txtBox.Selection.Text);
             defineWindow.Show();
         }
     }
