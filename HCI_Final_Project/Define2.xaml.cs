@@ -50,7 +50,6 @@ namespace HCI_Final_Project
                     
                     parseDefinition(result);
                     playAudio(result);
-                    defLabel.Content = result;
                 }
                 catch (Exception ex)
                 {
@@ -68,7 +67,13 @@ namespace HCI_Final_Project
         //  2. Syllable layout
         public void parseDefinition(string word_response)
         {
-
+            //1.
+            int indexOfDef = word_response.IndexOf("shortdef\":[");
+            indexOfDef = indexOfDef + 11;
+            int indexOfDefEnd = word_response.IndexOf("]", indexOfDef);
+            int defLength = indexOfDefEnd - indexOfDef;
+            string shortDef = word_response.Substring(indexOfDef, defLength);
+            defLabel.Content = shortDef;
             //2.
             int indexOfSyllable = word_response.IndexOf("\"hw\":");
             indexOfSyllable = indexOfSyllable + 5;
@@ -78,6 +83,10 @@ namespace HCI_Final_Project
             syllableLabel.Content = syllable;
             //syllableLabel.FontFamily = System.Windows.Media.FontFamily("Arial");
             syllableLabel.FontSize = 24;
+
+
+
+
         }
         
         public void playAudio(string word_response)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -62,22 +63,7 @@ namespace HCI_Final_Project
 
         private void textBlock_GotFocus(object sender, RoutedEventArgs e)
         {
-            //RichTextBox txtBox = (RichTextBox)sender;
-            //var defineWindow = new Define2(txtBox.Selection.Text);
-            //defineWindow.Show();
-            /**char[] strDataAsChars = txtBox.Text.ToCharArray();
-            int i = 0;
-           
-
-            for (i = txtBox.SelectionStart - 1; ((i >= 0) && (strDataAsChars[i] != ' ')); --i) ;
-            int selBegin = i + 1;
-
-            for (i = txtBox.SelectionStart; ((i < strDataAsChars.Length) && (strDataAsChars[i] != ' ')); ++i) ;
-            int selEnd = i;
-
-            //txtBox.Select(selBegin, selEnd - selBegin);
-            var defineWindow = new Define2(txtBox.SelectedText);
-            defineWindow.Show();**/
+            //Empty
         }
 
         private void textBlock_SelectionChanged(object sender, MouseButtonEventArgs e)
