@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HCI_Final_Project"
         mc:Ignorable="d"
         Title="Define2" Height="450" Width="1000">
-    <Grid>
+    <Grid Background="#FF1B999C">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="653*"/>
             <ColumnDefinition Width="147*"/>
