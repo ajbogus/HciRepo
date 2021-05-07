@@ -42,10 +42,14 @@ namespace HCI_Final_Project
                 try
                 {
                     //var stringContent = new StringContent("", System.Text.Encoding.UTF8, "application/json");
-                    var response = await client.GetAsync("https://www.dictionaryapi.com/api/v3/references/collegiate/json/voluminous?key=8e6c9461-437f-4dea-93f7-9b0cd218d5a0");
+                    string urlToGetTo = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/";
+                    urlToGetTo += word;
+                    urlToGetTo += "?key=8e6c9461-437f-4dea-93f7-9b0cd218d5a0";
+                    var response = await client.GetAsync(urlToGetTo);
                     var result = await response.Content.ReadAsStringAsync();
                     
                     parseDefinition(result);
+                    playAudio(result);
                     defLabel.Content = result;
                 }
                 catch (Exception ex)
@@ -74,19 +78,56 @@ namespace HCI_Final_Project
             syllableLabel.Content = syllable;
             //syllableLabel.FontFamily = System.Windows.Media.FontFamily("Arial");
             syllableLabel.FontSize = 24;
-
-
-            //3.
+        }
+        
+        public void playAudio(string word_response)
+        {
             int indexOfAudio = word_response.IndexOf("\"audio\":");
             indexOfAudio = indexOfAudio + 9;
             int indexOfAudioEnd = word_response.IndexOf(",", indexOfAudio);
-            indexOfAudioEnd = indexOfAudioEnd-1;
+            indexOfAudioEnd = indexOfAudioEnd - 1;
             int audioLength = indexOfAudioEnd - indexOfAudio;
             string audiofile = word_response.Substring(indexOfAudio, audioLength);
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer(audiofile + ".wav");
+            string audioAccessPoint = "https://media.merriam-webster.com/audio/prons/en/us/wav/";
+
+            string subDir = getSubDir(audiofile);
+            
+
+            audioAccessPoint += subDir + "/" + audiofile + ".wav";
+
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+            player.SoundLocation = audioAccessPoint;
             player.Play();
+        }
 
-
+        public string getSubDir(string audio)
+        {
+            string subDir = "";
+            if (32 < audio[0] && audio[0] < 60)
+            {
+                subDir = "number";
+                return subDir;
+            }
+            else
+            {
+                if (audio.Length > 2)
+                {
+                    if (audio[0] == 98 && audio[1] == 105 && audio[2] == 120)
+                    {
+                        subDir = "bix";
+                        return subDir;
+                    }
+                    else
+                    {
+                        if (audio[0] == 103 && audio[1] == 103)
+                        {
+                            subDir = "gg";
+                            return subDir;
+                        }
+                    }
+                }
+            }
+            return audio[0].ToString();
         }
       
     }
