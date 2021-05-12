@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace HCI_Final_Project
 {
@@ -18,126 +19,35 @@ namespace HCI_Final_Project
     /// </summary>
     public partial class Define2 : Window
     {
-        private string word;
         public Define2()
         {
             InitializeComponent();
         }
 
-        public  Define2(String wordtoDefine)
+
+        //0. Word
+        //1. Definition of word
+        //2. Syllables
+        //3. Part of Speech
+        //4. AudioAccessPoint
+        public Define2(List<string> list)
         {
             InitializeComponent();
-            word = wordtoDefine;
-            wordLabel.Content = word;
-            defineWord(word);
+            wordLabel.Content = list[0];
+            defLabel.Text = list[1];
+            syllableLabel.Content = list[2];
+            partOfSpeechLabel.Content = list[3];
+            //examples.Text = list[4];
+            playSound(list[4]);
             
         }
 
-
-        public async void defineWord(string word)
+        public void playSound(string audioAccessPoint)
         {
-            Console.WriteLine("Getting to define word Yay!!!");
-            using (var client = new HttpClient())
-            {
-                try
-                {
-                    //var stringContent = new StringContent("", System.Text.Encoding.UTF8, "application/json");
-                    string urlToGetTo = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/";
-                    urlToGetTo += word;
-                    urlToGetTo += "?key=8e6c9461-437f-4dea-93f7-9b0cd218d5a0";
-                    var response = await client.GetAsync(urlToGetTo);
-                    var result = await response.Content.ReadAsStringAsync();
-                    
-                    parseDefinition(result);
-                    playAudio(result);
-                }
-                catch (Exception ex)
-                {
-                    //TODO: popup an error message
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine(ex.Message);
-                    Console.ResetColor();
-                }
-            }
-        }
-
-
-        //This methhod will parse the API response into 3 objects
-        //  1. Definition
-        //  2. Syllable layout
-        public void parseDefinition(string word_response)
-        {
-            //1.
-            int indexOfDef = word_response.IndexOf("shortdef\":[");
-            indexOfDef = indexOfDef + 11;
-            int indexOfDefEnd = word_response.IndexOf("]", indexOfDef);
-            int defLength = indexOfDefEnd - indexOfDef;
-            string shortDef = word_response.Substring(indexOfDef, defLength);
-            defLabel.Content = shortDef;
-            //2.
-            int indexOfSyllable = word_response.IndexOf("\"hw\":");
-            indexOfSyllable = indexOfSyllable + 5;
-            int indexOfSyllableEnd = word_response.IndexOf(',', indexOfSyllable);
-            int syllableLength = indexOfSyllableEnd - indexOfSyllable;
-            string syllable = word_response.Substring(indexOfSyllable, syllableLength);
-            syllableLabel.Content = syllable;
-            //syllableLabel.FontFamily = System.Windows.Media.FontFamily("Arial");
-            syllableLabel.FontSize = 24;
-
-
-
-
-        }
-        
-        public void playAudio(string word_response)
-        {
-            int indexOfAudio = word_response.IndexOf("\"audio\":");
-            indexOfAudio = indexOfAudio + 9;
-            int indexOfAudioEnd = word_response.IndexOf(",", indexOfAudio);
-            indexOfAudioEnd = indexOfAudioEnd - 1;
-            int audioLength = indexOfAudioEnd - indexOfAudio;
-            string audiofile = word_response.Substring(indexOfAudio, audioLength);
-            string audioAccessPoint = "https://media.merriam-webster.com/audio/prons/en/us/wav/";
-
-            string subDir = getSubDir(audiofile);
-            
-
-            audioAccessPoint += subDir + "/" + audiofile + ".wav";
-
             System.Media.SoundPlayer player = new System.Media.SoundPlayer();
             player.SoundLocation = audioAccessPoint;
             player.Play();
         }
 
-        public string getSubDir(string audio)
-        {
-            string subDir = "";
-            if (32 < audio[0] && audio[0] < 60)
-            {
-                subDir = "number";
-                return subDir;
-            }
-            else
-            {
-                if (audio.Length > 2)
-                {
-                    if (audio[0] == 98 && audio[1] == 105 && audio[2] == 120)
-                    {
-                        subDir = "bix";
-                        return subDir;
-                    }
-                    else
-                    {
-                        if (audio[0] == 103 && audio[1] == 103)
-                        {
-                            subDir = "gg";
-                            return subDir;
-                        }
-                    }
-                }
-            }
-            return audio[0].ToString();
-        }
-      
     }
 }

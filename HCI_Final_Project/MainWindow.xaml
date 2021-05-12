@@ -28,7 +28,7 @@
                 </RichTextBox>
             </StackPanel>
         </ScrollViewer>
-        <Button x:Name="defineBttn" Content="Define Word" HorizontalAlignment="Left" Height="62" Margin="10,20,0,0" VerticalAlignment="Top" Width="104" Click="defineBttn_Click" FontFamily="Arial Black" Background="#FF4CD7EB" Grid.ColumnSpan="2"/>
+        <Button x:Name="defineBttn" Visibility="Visible" Content="Define Word" HorizontalAlignment="Left" Height="62" Margin="10,20,0,0" VerticalAlignment="Top" Width="104" Click="defineBttn_Click" FontFamily="Arial Black" Background="#FF4CD7EB" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>

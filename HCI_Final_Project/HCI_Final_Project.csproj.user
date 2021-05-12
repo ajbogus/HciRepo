@@ -7,6 +7,20 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Define1.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Define2.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Define1.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Define2.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

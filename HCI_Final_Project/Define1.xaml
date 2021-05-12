@@ -6,15 +6,22 @@
         xmlns:local="clr-namespace:HCI_Final_Project"
         mc:Ignorable="d"
         Title="Define1" Height="450" Width="800">
-     
-    <Grid Background="#FFEB6E0F">
-        <Label Content="Word that you would like to define:" HorizontalAlignment="Left" Height="31" Margin="75,64,0,0" VerticalAlignment="Top" Width="202"/>
-        <Label Content="Definition:" HorizontalAlignment="Left" Height="29" Margin="75,135,0,0" VerticalAlignment="Top" Width="202"/>
-        <TextBox x:Name="wordToDefine" HorizontalAlignment="Left" Height="22" Margin="277,64,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="215"/>
-        <TextBox x:Name="definition" HorizontalAlignment="Left" Height="268" Margin="176,150,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="563"/>
-        <Button x:Name="bttnDefine" Content="Define" HorizontalAlignment="Left" Height="23" Margin="507,64,0,0" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.224,1.088" Click="bttnDefine_Click"/>
-        <Label Content="Pronunciation:" HorizontalAlignment="Left" Height="30" Margin="75,100,0,0" VerticalAlignment="Top" Width="130"/>
-        <TextBox x:Name="pronunciation" HorizontalAlignment="Left" Height="58" Margin="210,92,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
 
+    <Grid Background="#FFEB6E0F">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="297*"/>
+            <ColumnDefinition Width="503*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Word that you would like to define:" HorizontalAlignment="Left" Height="31" Margin="75,10,0,0" VerticalAlignment="Top" Width="202"/>
+        <Label Content="Definition:" HorizontalAlignment="Left" Height="29" Margin="75,150,0,0" VerticalAlignment="Top" Width="202"/>
+        <TextBox x:Name="wordToDefine" HorizontalAlignment="Left" Height="22" Margin="277,10,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="215" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="definition" HorizontalAlignment="Left" Height="144" Margin="176,150,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="563" Grid.ColumnSpan="2"/>
+        <Button x:Name="bttnDefine" Content="Define" HorizontalAlignment="Left" Height="23" Margin="200,9,0,0" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.224,1.088" Click="bttnDefine_Click" Grid.Column="1"/>
+        <Label Content="Pronunciation:" HorizontalAlignment="Left" Height="30" Margin="75,46,0,0" VerticalAlignment="Top" Width="130"/>
+        <TextBox x:Name="pronunciation" HorizontalAlignment="Left" Height="30" Margin="192,46,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.ColumnSpan="2"/>
+        <Label Content="Part of Speech:" HorizontalAlignment="Left" Height="30" Margin="75,90,0,0" VerticalAlignment="Top" Width="130"/>
+        <TextBox x:Name="partOfSpeechLabel" HorizontalAlignment="Left" Height="30" Margin="192,90,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.ColumnSpan="2"/>
+        <Label Content="Examples:" HorizontalAlignment="Left" Height="29" Margin="75, 300,0,0" VerticalAlignment="Top" Width="202"/>
+        <TextBox x:Name="examples" HorizontalAlignment="Left" Height="124" Margin="176,300,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="563" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>
